@@ -13,13 +13,13 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
             <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
 
@@ -36,12 +36,16 @@
 
         <Label Grid.Row="0" Grid.Column="1" Name="todaysDate" />
 
-        <Button Grid.Row="1" Grid.Column="0" Name="addTask" Margin="5"> + </Button>
+        <ListBox Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" />
 
-        <ListBox Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5">
-            
-        </ListBox>
-        
+        <TextBox Grid.Row="1" Grid.Column="0" Margin="5" />
+
+        <DatePicker Grid.Row="1" Grid.Column="1" Margin="5" />
+
+        <Button Grid.Row="1" Grid.Column="2" Margin="5" > Add </Button>
+
+
+
 
 
 
