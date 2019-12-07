@@ -1,0 +1,17 @@
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\bin\Debug\netcoreapp3.0\Task Manager.exe
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\bin\Debug\netcoreapp3.0\Task Manager.deps.json
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\bin\Debug\netcoreapp3.0\Task Manager.runtimeconfig.json
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\bin\Debug\netcoreapp3.0\Task Manager.runtimeconfig.dev.json
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\bin\Debug\netcoreapp3.0\Task Manager.dll
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\bin\Debug\netcoreapp3.0\Task Manager.pdb
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Task Manager.csprojAssemblyReference.cache
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\MainWindow.g.cs
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\App.g.cs
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Task Manager_MarkupCompile.cache
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Task Manager_MarkupCompile.lref
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\MainWindow.baml
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Task Manager.g.resources
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Task Manager.AssemblyInfoInputs.cache
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Task Manager.AssemblyInfo.cs
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Task Manager.dll
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Task Manager.pdb

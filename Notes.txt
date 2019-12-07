@@ -1,0 +1,11 @@
+Creating the project:
+
+https://docs.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-wpf?view=vs-2019
+
+Git cmds
+https://www.softwarelab.it/2018/10/12/adding-an-existing-project-to-github-using-the-command-line/
+Error with db file locked
+https://stackoverflow.com/questions/47460039/vs-2017-git-local-commit-db-lock-error-on-every-commit/47472811
+
+WPS api
+https://docs.microsoft.com/en-us/dotnet/framework/wpf/
