@@ -90,3 +90,87 @@
                 </DataGrid>
             </Grid>
         </ListView>
+
+
+<Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" Name="gridView_Tasks">
+            <DataGrid Name="dgTasks" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Description}" Width="Auto"/>
+                    <DataGridTextColumn Binding="{Binding Date}" Width="50"/>
+                    <DataGridCheckBoxColumn Binding="{Binding TaskComplete}" Width="50" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+
+
+
+
+<Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" Name="gridView_Tasks">
+            <DataGrid Name="dgTasks" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+
+
+
+                    <DataGridTextColumn Binding="{Binding Description, Mode=TwoWay}" IsReadOnly="false" Width="*" x:Name="TaskDescr"/>
+                    
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding Date}" BorderThickness="0" Width="Auto" Name="DueDate"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    
+                    <DataGridCheckBoxColumn Binding="{Binding TaskComplete}" Width="Auto" x:Name="TaskComplete" />
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+
+
+<ListBox Name="lbTasks" HorizontalContentAlignment="Stretch" 
+                 Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5"
+                 SelectionChanged="lbTasks_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="{Binding Description, Mode=TwoWay}" x:Name="TaskDescr"/>
+                        <DatePicker Grid.Column="1" SelectedDate="{Binding Date}" x:Name="DueDate" SelectedDateChanged="selectDate_ChangedDate"/>
+                        <CheckBox Grid.Column="2" IsChecked="{Binding TaskComplete}" x:Name="TaskComplete" Click="checkBox_CheckedChanged"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+
+
+private void selectDate_ChangedDate(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void checkBox_CheckedChanged(object sender, System.EventArgs e)
+        {
+            if (lbTasks.SelectedItem != null)
+            {
+                CheckBox chkBox = lbTasks.SelectedItem as CheckBox;
+
+               
+
+                if ((bool)chkBox.IsChecked)
+                {
+                    MessageBox.Show("The index of the row for the clicked cell is " + lbTasks.SelectedIndex);
+                }
+            }
+
+        }

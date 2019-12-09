@@ -21,7 +21,7 @@ namespace Task_Manager
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+
 
         public MainWindow()
         {
@@ -32,27 +32,41 @@ namespace Task_Manager
 
         private void Add_Task(object sender, RoutedEventArgs e)
         {
-            
+
 
             Task newTask = new Task();
 
             newTask.Description = taskInfo.Text;
             newTask.Date = Convert.ToString(dueDate.SelectedDate);
-            newTask.TaskComplete = true;
-
+            newTask.TaskComplete = false;
+            
             Task_ListBoxItems.Add(newTask);
 
-            dgTasks.ItemsSource = Task_ListBoxItems;
+            lbTasks.ItemsSource = Task_ListBoxItems;
 
 
         }
 
-        public class Task
+        private void ListBoxTasksItemChanged(object sender, RoutedEventArgs e)
         {
-            public string Description { get; set; }
-            public string Date { get; set; }
-            public Boolean TaskComplete { get; set; }
+            if (lbTasks.SelectedItem != null)
+            {
+
+               
+
+                //string curItem = lbTasks.SelectedItem.ToString();
+                MessageBox.Show("The index of the row for the clicked cell is " + sender.ToString());
+
+
+            }
+                //MessageBox.Show("The index of the row for the clicked cell is " + lbTasks.SelectedIndex);
 
         }
+
+        
+
+        
+
+        
     }
 }

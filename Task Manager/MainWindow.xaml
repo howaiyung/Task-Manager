@@ -42,16 +42,27 @@
 
         <Button Grid.Row="1" Grid.Column="2" Margin="5" Click="Add_Task"> Add </Button>
 
-     
-        <Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" Name="gridView_Tasks">
-            <DataGrid Name="dgTasks" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Description}" Width="Auto"/>
-                    <DataGridTextColumn Binding="{Binding Date}" Width="50"/>
-                    <DataGridCheckBoxColumn Binding="{Binding TaskComplete}" Width="50" />
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
+
+
+        <ListBox Name="lbTasks" HorizontalContentAlignment="Stretch" 
+                 Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5"
+                 MouseLeftButtonUp="ListBoxTasksItemChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="{Binding Description, Mode=TwoWay}" x:Name="TaskDescr"/>
+                        <DatePicker Grid.Column="1" SelectedDate="{Binding Date, Mode=TwoWay}" x:Name="DueDate" />
+                        <CheckBox Grid.Column="2" IsChecked="{Binding TaskComplete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskComplete"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
 
         
