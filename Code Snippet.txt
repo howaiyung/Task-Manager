@@ -12,3 +12,81 @@
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
+
+
+
+<Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Description}" />
+                        <TextBlock Grid.Column="1" Text="{Binding Date}" />
+                        <CheckBox Grid.Column="2"/>
+
+
+
+<ListBox Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" Name="listOfTasks">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        
+
+                        
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            
+            
+        </ListBox>
+
+
+
+<Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
+            <DataGrid Name="dgUsers" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="Task" Binding="{Binding Name}" />
+                    
+                    <DataGridTemplateColumn Header="Birthday">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding Birthday}" BorderThickness="0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+
+
+<Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Row="0" Text="{Binding TaskDesription}"/>
+                <DatePicker Grid.Row="1" Name="taskDueDate"/>
+                <CheckBox Grid.Row="2" />
+                          
+            </Grid>
+
+
+
+
+<ListView Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" Name="gridView_Tasks">
+            <Grid>
+                <DataGrid Name="dgTasks" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Description}"/>
+                        <DataGridTextColumn Binding="{Binding Date}" />
+                        <DataGridCheckBoxColumn Binding="{Binding TaskComplete}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </ListView>

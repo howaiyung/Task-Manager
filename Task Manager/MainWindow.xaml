@@ -36,13 +36,25 @@
 
         <Label Grid.Row="0" Grid.Column="1" Name="todaysDate" />
 
-        <ListBox Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" />
+        <TextBox Grid.Row="1" Grid.Column="0" Margin="5" Name="taskInfo"/>
 
-        <TextBox Grid.Row="1" Grid.Column="0" Margin="5" />
+        <DatePicker Grid.Row="1" Grid.Column="1" Margin="5" Name="dueDate"/>
 
-        <DatePicker Grid.Row="1" Grid.Column="1" Margin="5" />
+        <Button Grid.Row="1" Grid.Column="2" Margin="5" Click="Add_Task"> Add </Button>
 
-        <Button Grid.Row="1" Grid.Column="2" Margin="5" > Add </Button>
+     
+        <Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5" Name="gridView_Tasks">
+            <DataGrid Name="dgTasks" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Description}" Width="Auto"/>
+                    <DataGridTextColumn Binding="{Binding Date}" Width="50"/>
+                    <DataGridCheckBoxColumn Binding="{Binding TaskComplete}" Width="50" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+
+        
 
 
 
