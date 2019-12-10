@@ -9,11 +9,12 @@ using System.Collections.ObjectModel;
 
 namespace Task_Manager.ViewModel
 {
-    class TaskViewModel : INotifyPropertyChanged
+    class TaskViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        private Task task;
+        public TaskViewModel(){
+        }
+ 
         public ObservableCollection<Task> Tasks
         {
             get;

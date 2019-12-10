@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_0
 C:\Users\Zipzash2\Desktop\C4i\Task Manager\App.xaml
-21492273918
+2502764931
 
-6-498482710
+7-372094348
 192-1037106189
-MainWindow.xaml;Views\TaskManagerWindow.xaml;
+MainWindow.xaml;Views\TaskView.xaml;
 
 True
 

@@ -7,7 +7,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\TaskManagerWindow.xaml.cs">
+    <Compile Update="Views\TaskView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -15,7 +15,7 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\TaskManagerWindow.xaml">
+    <Page Update="Views\TaskView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

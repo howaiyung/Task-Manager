@@ -11,16 +11,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Task_Manager.Views
 {
     /// <summary>
     /// Interaction logic for TaskManagerWindow.xaml
     /// </summary>
-    public partial class TaskManagerWindow : UserControl
+    public partial class TaskView : UserControl
     {
-        public TaskManagerWindow()
+        public TaskView()
         {
             InitializeComponent();
+            this.DataContext = new Task_Manager.ViewModel.TaskViewModel();
         }
     }
 }

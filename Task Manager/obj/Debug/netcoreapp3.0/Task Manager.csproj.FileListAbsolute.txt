@@ -15,6 +15,6 @@ C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Task Manager.
 C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Task Manager.AssemblyInfo.cs
 C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Task Manager.dll
 C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Task Manager.pdb
-C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Views\TaskManagerWindow.g.cs
 C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\GeneratedInternalTypeHelper.g.cs
-C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Views\TaskManagerWindow.baml
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Views\TaskView.g.cs
+C:\Users\Zipzash2\Desktop\C4i\Task Manager\obj\Debug\netcoreapp3.0\Views\TaskView.baml

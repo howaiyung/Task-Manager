@@ -9,7 +9,7 @@
         Title="Task Manager" Height="450" Width="800">
 
     <Grid>
-        <views:TaskManagerWindow x:Name="TaskManagerViewControl" Loaded="TaskManagerControl_Loaded"/>
+        <views:TaskView x:Name="TaskManagerViewControl"/>
     </Grid>
 
 

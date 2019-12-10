@@ -24,3 +24,7 @@ Mostly
 
 
 
+Refer to this website:
+
+https://www.tutorialspoint.com/mvvm/mvvm_first_application.htm
+
