@@ -3,76 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Task_Manager"
+        xmlns:local = "clr-namespace:Task_Manager"
+        xmlns:views = "clr-namespace:Task_Manager.Views"
         mc:Ignorable="d"
         Title="Task Manager" Height="450" Width="800">
 
-
-
-
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-
-
-        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
-            <MenuItem Header="_File">
-                <MenuItem Header="_New task"/>
-                <MenuItem Header="_Exit" />
-            </MenuItem>
-
-            <MenuItem Header="_Date">
-                
-            </MenuItem>
-        </Menu>
-
-        <Label Grid.Row="0" Grid.Column="1" Name="todaysDate" />
-
-        <TextBox Grid.Row="1" Grid.Column="0" Margin="5" Name="taskInfo"/>
-
-        <DatePicker Grid.Row="1" Grid.Column="1" Margin="5" Name="dueDate"/>
-
-        <Button Grid.Row="1" Grid.Column="2" Margin="5" Click="Add_Task"> Add </Button>
-
-
-
-        <ListBox Name="lbTasks" HorizontalContentAlignment="Stretch" 
-                 Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5"
-                 MouseLeftButtonUp="ListBoxTasksItemChanged">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Grid.Column="0" Text="{Binding Description, Mode=TwoWay}" x:Name="TaskDescr"/>
-                        <DatePicker Grid.Column="1" SelectedDate="{Binding Date, Mode=TwoWay}" x:Name="DueDate" />
-                        <CheckBox Grid.Column="2" IsChecked="{Binding TaskComplete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskComplete"/>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
-
-        
-
-
-
-
-
-
+        <views:TaskManagerWindow x:Name="TaskManagerViewControl" Loaded="TaskManagerControl_Loaded"/>
     </Grid>
+
+
+
+    
 
 
 

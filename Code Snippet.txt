@@ -174,3 +174,131 @@ private void selectDate_ChangedDate(object sender, System.EventArgs e)
             }
 
         }
+
+
+
+public void Add_Task(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+            /*public void Add_Task
+
+
+                Task newTask = new Task();
+
+                newTask.Description = taskInfo.Text;
+                newTask.Date = Convert.ToString(dueDate.SelectedDate);
+                newTask.TaskComplete = false;
+
+                Task_ListBoxItems.Add(newTask);
+
+                lbTasks.ItemsSource = Task_ListBoxItems;
+
+
+            }*/
+
+
+
+
+
+
+
+
+
+
+
+public class Task
+    {
+        private string _taskDescription;
+        private string _taskDueDate;
+        private bool _isComplete;
+        private bool _isValidTask;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+
+        public string TaskDescription
+        {
+            get
+            {
+                return _taskDescription;
+            }
+            set
+            {
+                if(_taskDescription != value)
+                {
+                    _taskDescription = value;
+                    OnPropertyChanged();
+                    SetIsValid();
+
+                }
+            }
+        }
+
+        public string TaskDueDate
+        {
+            get
+            {
+                return _taskDueDate;
+            }
+            set
+            {
+                _taskDueDate = value;
+                OnPropertyChanged();
+                SetIsValid();
+            }
+        }
+
+        public bool IsValidTask
+        {
+            get
+            {
+                return _isValidTask;
+            }
+            set
+            {
+                if (_isValidTask != value)
+                {
+                    _isValidTask = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
+
+        private void SetIsValid()
+        {
+            IsValidTask = !string.IsNullOrEmpty(TaskDescription) && !string.IsNullOrEmpty(TaskDueDate);
+        }
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+
+
+
+ ObservableCollection<Task> Task_ListBoxItems = new ObservableCollection<Task>();
+
+        
+
+        private void ListBoxTasksItemChanged(object sender, RoutedEventArgs e)
+        {
+            if (lbTasks.SelectedItem != null)
+            {
+
+               
+
+                //string curItem = lbTasks.SelectedItem.ToString();
+                MessageBox.Show("The index of the row for the clicked cell is " + sender.ToString());
+
+
+            }
+                //MessageBox.Show("The index of the row for the clicked cell is " + lbTasks.SelectedIndex);
+
+        }

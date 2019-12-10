@@ -21,3 +21,6 @@ Every you add an item, it'll display as a label with the description of the task
 There is a way you can create a separate XAML component such that you can call the object, fill the object with the info, and insert the instance of that object into the lsit box.
 
 Mostly 
+
+
+
