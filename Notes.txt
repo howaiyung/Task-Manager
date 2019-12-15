@@ -92,3 +92,20 @@ https://www.tutorialspoint.com/mvvm/mvvm_first_application.htm
 
 
     </Grid>
+
+
+
+
+
+
+public event EventHandler CanExecuteChanged;
+
+        public bool CanExecute(object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Execute(object parameter)
+        {
+            throw new NotImplementedException();
+        }

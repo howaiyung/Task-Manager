@@ -9,8 +9,10 @@ using System.Runtime.CompilerServices;
 namespace Task_Manager.Model
 {
 
+
     public class TaskModel { }
 
+    /*
     public class Task : INotifyPropertyChanged
     {
         private string __taskDescription;
@@ -75,8 +77,10 @@ namespace Task_Manager.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
             }
         }
+
+        
     }
-    
+    */
 
 
 
