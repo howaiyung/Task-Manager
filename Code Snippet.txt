@@ -302,3 +302,80 @@ public class Task
                 //MessageBox.Show("The index of the row for the clicked cell is " + lbTasks.SelectedIndex);
 
         }
+
+
+
+
+
+ private SimpleEditableTask _NewTask;
+        
+        public SimpleEditableTask NewTask
+        {
+            get { return _NewTask; }
+            set { SetProperty(ref _NewTask, value); }
+        }
+
+        private TaskModel _editingTask = null;
+
+        public void SetTask(TaskModel task)
+        {
+            _editingTask = task;
+
+            if(NewTask != null) NewTask.ErrorsChanged -= RaiseCanExecuteChanged;
+            NewTask = new SimpleEditableTask();
+            NewTask.ErrorsChanged += RaiseCanExecuteChanged;
+            CopyTask(task, NewTask);
+
+        }
+
+        private void CopyTask(TaskModel task, SimpleEditableTask newTask)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RaiseCanExecuteChanged(object sender, DataErrorsChangedEventArgs e)
+        {
+            AddCommand.Ra
+        }
+
+        /// <summary>
+        /// This event declaration is to be used to track a existing task entry
+        /// This event is attached to each of the new entries
+        /// </summary>
+
+
+        private bool _EditStatus;
+
+        public bool EditStatus
+        {
+            get { return _EditStatus; }
+            set { SetProperty(ref _EditStatus, value); }
+        }
+
+
+
+        public ICommand AddCommand { get; private set; }
+        public AddEditTaskViewModel()
+        {
+            AddCommand = new DelegateCommand(OnAdd, CanAdd);
+        }
+
+
+       
+        private void OnAdd()
+        {
+            UpdateTask();
+        }
+
+        private void UpdateTask(SimpleEditableTask source, Task target)
+        {
+
+        }
+
+
+
+        private bool CanAdd()
+        {
+
+            throw new NotImplementedException();
+        }

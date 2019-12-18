@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="ChoreManager.View.ChoreMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:ChoreManager.View"
+             xmlns:viewModel ="clr-namespace:ChoreManager.ViewModel"
+             xmlns:data = "clr-namespace:ChoreManager.Model" 
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+
+
+    <!-- This section acts as the view for listing the items in the text box -->
+
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type data:Chore}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="{Binding ChoreInfo, Mode=TwoWay}" x:Name="TaskDescr"/>
+                <DatePicker Grid.Column="1" SelectedDate="{Binding ChoreDateDue, Mode=TwoWay}" x:Name="DueDate" />
+                <CheckBox Grid.Column="2" IsChecked="{Binding ChoreIsDone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskComplete"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    
+    
+    <Grid DataContext="Chore">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New task"/>
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+
+            <MenuItem Header="_Date">
+
+            </MenuItem>
+        </Menu>
+
+        <Label Grid.Row="0" Grid.Column="1" Name="todaysDate" />
+
+        <TextBox Name="choreInfo"
+                 Grid.Row="1" 
+                 Grid.Column="0" 
+                 Margin="5" 
+                 Text="{Binding ChoreInfo, UpdateSourceTrigger=PropertyChanged}"
+                 />
+
+        <DatePicker Grid.Row="1" 
+                    Grid.Column="1" 
+                    Margin="5" 
+                    Name="dueDate"
+                    Text="{Binding SelectedDate}"
+                    SelectedDate="{x:Static sys:DateTime.Now}"/>
+
+        <Button Content="Add" 
+            Command = "{Binding AddCommand}" 
+                Grid.Row="1" 
+                Grid.Column="2" 
+                Margin="5" />
+
+
+        <ListBox 
+                Name="lbTasks" HorizontalContentAlignment="Stretch" 
+                Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5"
+                ItemsSource = "{Binding Chores}" />
+
+    </Grid>
+</UserControl>

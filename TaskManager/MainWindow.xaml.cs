@@ -24,13 +24,5 @@ namespace TaskManager
         {
             InitializeComponent();
         }
-
-        private void TaskManagerControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            TaskManager.ViewModels.ChoreViewModel choreManagerViewModelObject =
-                new TaskManager.ViewModels.ChoreViewModel();
-
-
-        }
     }
 }
