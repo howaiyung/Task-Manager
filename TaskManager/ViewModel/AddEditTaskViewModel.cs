@@ -8,15 +8,14 @@ using TaskManager.Model;
 using System.Windows.Input;
 using System.ComponentModel;
 using System.Windows;
-
-
+using Prism.Validation;
 
 
 namespace TaskManager.ViewModel
 {
-    class AddEditTaskViewModel : BindableBase
+    class AddEditTaskViewModel : ValidatableBindableBase
     {
-        public ObservableCollection<SimpleEditableTask> Tasks { get; } = new ObservableCollection<SimpleEditableTask>();
+        public ObservableCollection<SimpleEditableTask> Tasks { get; set; } = new ObservableCollection<SimpleEditableTask>();
 
 
         public AddEditTaskViewModel()
@@ -24,7 +23,7 @@ namespace TaskManager.ViewModel
             AddCommand = new DelegateCommand(AddTask, CanAddTask);
         }
 
-
+        
 
         private bool _EditMode;
 
@@ -40,11 +39,13 @@ namespace TaskManager.ViewModel
 
         public SimpleEditableTask NewTask
         {
+            
             get { return _NewTask; }
             set 
-            { 
+            {
+                
                 SetProperty(ref _NewTask, value);
-                AddCommand.RaiseCanExecuteChanged();
+                AddCommand.CanExecute();
             }
 
         }
@@ -123,9 +124,8 @@ namespace TaskManager.ViewModel
 
         private bool CanAddTask()
         {
-            return !NewTask.HasErrors;
+            throw new NotImplementedException();
         }
 
-        
     }
 }

@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Zipzash2\\Desktop\\C4i\\Task Manager\\Task Manager.csproj",
+      "projectUniqueName": "C:\\Users\\Zipzash2\\Desktop\\C4i\\FailedAttempts\\Task Manager\\Task Manager.csproj",
       "projectName": "Task Manager",
-      "projectPath": "C:\\Users\\Zipzash2\\Desktop\\C4i\\Task Manager\\Task Manager.csproj",
+      "projectPath": "C:\\Users\\Zipzash2\\Desktop\\C4i\\FailedAttempts\\Task Manager\\Task Manager.csproj",
       "packagesPath": "C:\\Users\\Zipzash2\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Zipzash2\\Desktop\\C4i\\Task Manager\\obj\\",
+      "outputPath": "C:\\Users\\Zipzash2\\Desktop\\C4i\\FailedAttempts\\Task Manager\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

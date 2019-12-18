@@ -3,14 +3,26 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using TaskManager.ViewModel;
+using Prism.Mvvm;
+using Prism.Commands;
+using Prism.Events;
+using System.ComponentModel;
+using System.Collections;
+using Prism.Validation;
 
 /// <summary>
 /// This section is used in returning whether something has changed or not.
 /// https://documentation.devexpress.com/WPF/17350/MVVM-Framework/View-Models/BindableBase
+/// 
+/// https://stackoverflow.com/questions/28844518/bindablebase-vs-inotifychanged
+/// 
+/// https://github.com/mfe-/Prism.Validation
 /// </summary>
+/// 
+
 namespace TaskManager.Model
 {
-    public class SimpleEditableTask : ValidateBindableBase
+    public class SimpleEditableTask : ValidatableBindableBase
     {
         private Guid _id;
 
@@ -39,10 +51,13 @@ namespace TaskManager.Model
 
         private bool _taskIsComplete;
 
+
         public bool TaskIsComplete
         {
             get { return _taskIsComplete; }
             set { SetProperty(ref _taskIsComplete, value); }
         }
+
+
     }
 }

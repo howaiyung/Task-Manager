@@ -23,3 +23,4 @@ C:\Users\Zipzash2\Desktop\C4i\TaskManager\obj\Debug\netcoreapp3.0\View\TaskManag
 C:\Users\Zipzash2\Desktop\C4i\TaskManager\obj\Debug\netcoreapp3.0\TaskManager.csproj.CopyComplete
 C:\Users\Zipzash2\Desktop\C4i\TaskManager\obj\Debug\netcoreapp3.0\TaskManager.dll
 C:\Users\Zipzash2\Desktop\C4i\TaskManager\obj\Debug\netcoreapp3.0\GeneratedInternalTypeHelper.g.cs
+C:\Users\Zipzash2\Desktop\C4i\TaskManager\bin\Debug\netcoreapp3.0\Prism.Validation.dll
