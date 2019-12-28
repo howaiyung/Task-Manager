@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TaskManager.ViewModel;
 
 namespace TaskManager.View
 {
@@ -21,6 +22,7 @@ namespace TaskManager.View
         public TaskManagerMainView()
         {
             InitializeComponent();
+            //this.DataContext = new AddEditTaskViewModel();
         }
     }
 }

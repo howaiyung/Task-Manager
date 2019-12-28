@@ -33,8 +33,8 @@ namespace TaskManager.Model
         }
 
         private string _taskInfo;
+        //[Required(AllowEmptyStrings = false)]
         [Required]
-
         public string TaskInfo
         {
             get { return _taskInfo; }
@@ -42,7 +42,7 @@ namespace TaskManager.Model
         }
 
         public string _taskDueDate;
-
+        [Required]
         public string TaskDueDate
         {
             get { return _taskDueDate; }
@@ -58,6 +58,6 @@ namespace TaskManager.Model
             set { SetProperty(ref _taskIsComplete, value); }
         }
 
-
+        
     }
 }

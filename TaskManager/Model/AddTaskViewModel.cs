@@ -17,7 +17,6 @@ namespace TaskManager.Model
             get { return _addTaskInfo; }
             set 
             {
-                MessageBox.Show("This action is getting reached!");
                 SetProperty(ref _addTaskInfo, value);
             }
         }

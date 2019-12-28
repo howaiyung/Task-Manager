@@ -1,0 +1,12 @@
+Using Prism, I was thinking most of the validation processing would be automated underneath the hood.
+That assumption was wrong, the examples given using the Prism was under the assumption that the data already existed, hence the clean interface.
+
+https://github.com/mfe-/Prism.Validation/tree/master/Example
+https://stackoverflow.com/questions/13232103/textbox-isnt-highlighting-red-on-validation-error
+
+The problem lies within the action itself to check whether an input is valid or not.
+Currently found one solution
+
+https://stackoverflow.com/questions/17511437/mvc-not-validate-empty-string
+
+

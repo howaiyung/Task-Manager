@@ -10,45 +10,33 @@ using System.ComponentModel;
 using System.Windows;
 using Prism.Validation;
 
-
 namespace TaskManager.ViewModel
 {
     class AddEditTaskViewModel : ValidatableBindableBase
     {
         public ObservableCollection<SimpleEditableTask> Tasks { get; set; } = new ObservableCollection<SimpleEditableTask>();
 
-
-        public AddEditTaskViewModel()
-        {
-            AddCommand = new DelegateCommand(AddTask, CanAddTask);
-        }
-
-        
-
-        private bool _EditMode;
-
-        public bool EditMode
-        {
-            get { return _EditMode; }
-            set { SetProperty(ref _EditMode, value); }
-        }
-
-
-
         private SimpleEditableTask _NewTask;
 
         public SimpleEditableTask NewTask
         {
-            
+
             get { return _NewTask; }
-            set 
+            set
             {
-                
                 SetProperty(ref _NewTask, value);
-                AddCommand.CanExecute();
             }
 
         }
+
+        public AddEditTaskViewModel()
+        {
+            SetTask(null);
+            AddCommand = new DelegateCommand(AddTask, CanAddTask);
+        }
+
+
+        
 
         /*private Task _editingTask = null;
 
@@ -111,6 +99,11 @@ namespace TaskManager.ViewModel
 
         }*/ //= new TaskICommand(AddTask, CanAddTask);
 
+
+        
+
+
+
         public DelegateCommand AddCommand { get; private set; }
         private void AddTask()
         {
@@ -124,8 +117,47 @@ namespace TaskManager.ViewModel
 
         private bool CanAddTask()
         {
-            throw new NotImplementedException();
+
+            //return !NewTask.HasErrors;
+            /*if (NewTask.ValidateProperties() == null)
+                return false;
+            else
+                return NewTask.ValidateProperties();*/
+
+            
+            return !_NewTask.HasErrors;
+
+
+
         }
 
+
+        private SimpleEditableTask _newViewTask = null;
+
+        public void SetTask(SimpleEditableTask nTask)
+        {
+            _newViewTask = nTask;
+            if (NewTask != null) NewTask.ErrorsChanged -= RaiseCanExecuteChanged;
+            NewTask = new SimpleEditableTask();
+            NewTask.ErrorsChanged += RaiseCanExecuteChanged;
+            //CopyTask(nTask, NewTask);
+
+        }
+
+        private void CopyTask(SimpleEditableTask source, SimpleEditableTask target)
+        {
+            source.TaskInfo = target.TaskInfo;
+            source.TaskDueDate = target.TaskDueDate;
+            source.TaskIsComplete = false;
+
+        }
+
+        private void RaiseCanExecuteChanged(object sender, DataErrorsChangedEventArgs e)
+        {
+            AddCommand.RaiseCanExecuteChanged();
+        }
     }
 }
+
+
+
