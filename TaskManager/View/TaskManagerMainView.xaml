@@ -6,14 +6,33 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:TaskManager"
              xmlns:viewModel="clr-namespace:TaskManager.ViewModel"
+             xmlns:data="clr-namespace:TaskManager.Model"
              xmlns:model="clr-namespace=Model;assembly=Model"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
+
+
+    
     <UserControl.DataContext>
         <viewModel:AddEditTaskViewModel/>
     </UserControl.DataContext>
 
+    <UserControl.Resources>
+        <DataTemplate DataType = "{x:Type data:SimpleEditableTask}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
+                <TextBlock Grid.Column="0" Text="{Binding TaskInfo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskDescr"/>
+                <DatePicker Grid.Column="1" SelectedDate="{Binding TaskDueDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="DueDate" />
+                <CheckBox Grid.Column="2" IsChecked="{Binding TaskIsComplete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskComplete"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>

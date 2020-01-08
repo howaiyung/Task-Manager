@@ -35,105 +35,42 @@ namespace TaskManager.ViewModel
             AddCommand = new DelegateCommand(AddTask, CanAddTask);
         }
 
-
-        
-
-        /*private Task _editingTask = null;
-
-        public void SetTask(Task nTask)
-        {
-            _editingTask = nTask;
-
-            if (NewTask != null) NewTask.ErrorsChanged -= RaiseCanExecuteChanged;
-            NewTask = new SimpleEditableTask();
-            NewTask.ErrorsChanged += RaiseCanExecuteChanged;
-            CopyCustomer(nTask, NewTask);
-        }
-
-
-        private void UpdateCustomer(SimpleEditableTask source, Task target)
-        {
-            target.TaskInfo = source.TaskInfo;
-            target.TaskDueDate = source.TaskDueDate;
-            target.TaskIsComplete = false;
-        }
-
-        private void CopyCustomer(Task source, SimpleEditableTask target)
-        {
-            target.Id = source.Id;
-
-            if (EditMode)
-            {
-                target.TaskInfo = source.TaskInfo;
-                target.TaskDueDate = source.TaskDueDate;
-                target.TaskIsComplete = source.TaskIsComplete;
-            }
-        }
-
-        private void RaiseCanExecuteChanged(object sender, EventArgs e)
-        {
-            AddCommand.RaiseCanExecuteChanged();
-        }*/
-
-
-
-        /// <summary>
-        /// Handles the AddCommand, will need to be triggered once text is entered into the textbox
-        /// </summary>
-
-
-        /*public ICommand _addCommand { get; private set; }
-
-        public ICommand AddCommand
-        {
-            get
-            {
-                if(_addCommand == null)
-                {
-                    _addCommand = new RelayCommand(
-                        param => this.AddTask(),
-                        param => this.CanAddTask()
-                    );
-                }
-            }
-
-        }*/ //= new TaskICommand(AddTask, CanAddTask);
-
-
-        
-
-
-
         public DelegateCommand AddCommand { get; private set; }
+        private SimpleEditableTask _newViewTask = null;
+
         private void AddTask()
         {
+            if(_newViewTask == null) { _newViewTask = new SimpleEditableTask(); }
+            
+            AddNewTask(NewTask, _newViewTask);
+
             /*UpdateCustomer(NewTask, _editingTask);
 
             Tasks.Add(NewTask);*/
 
-            MessageBox.Show("This action is getting reached!");
+            
+            //MessageBox.Show("This action is getting reached!");
+            Tasks.Add(_newViewTask);
+            
 
         }
 
         private bool CanAddTask()
         {
-
-            //return !NewTask.HasErrors;
-            /*if (NewTask.ValidateProperties() == null)
-                return false;
-            else
-                return NewTask.ValidateProperties();*/
-
-            
-            return !_NewTask.HasErrors;
-
-
-
+            return !NewTask.HasErrors;
         }
 
+        private void AddNewTask(SimpleEditableTask source, SimpleEditableTask target)
+        {
+            target.TaskInfo = source.TaskInfo;
+            target.TaskDueDate = source.TaskDueDate;
+            target.TaskIsComplete = false;
 
-        private SimpleEditableTask _newViewTask = null;
 
+            MessageBox.Show(target.TaskDueDate);
+        }
+
+        
         public void SetTask(SimpleEditableTask nTask)
         {
             _newViewTask = nTask;
@@ -144,13 +81,10 @@ namespace TaskManager.ViewModel
 
         }
 
-        private void CopyTask(SimpleEditableTask source, SimpleEditableTask target)
-        {
-            source.TaskInfo = target.TaskInfo;
-            source.TaskDueDate = target.TaskDueDate;
-            source.TaskIsComplete = false;
+        
 
-        }
+
+        
 
         private void RaiseCanExecuteChanged(object sender, DataErrorsChangedEventArgs e)
         {

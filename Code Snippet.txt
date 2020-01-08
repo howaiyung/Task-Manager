@@ -379,3 +379,69 @@ public class Task
 
             throw new NotImplementedException();
         }
+
+
+
+<Text="{Binding NewTask.TaskInfo, Mode=TwoWay,ValidatesOnDataErrors=true,UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
+
+
+/*private Task _editingTask = null;
+
+        public void SetTask(Task nTask)
+        {
+            _editingTask = nTask;
+
+            if (NewTask != null) NewTask.ErrorsChanged -= RaiseCanExecuteChanged;
+            NewTask = new SimpleEditableTask();
+            NewTask.ErrorsChanged += RaiseCanExecuteChanged;
+            CopyCustomer(nTask, NewTask);
+        }
+
+
+        private void UpdateCustomer(SimpleEditableTask source, Task target)
+        {
+            target.TaskInfo = source.TaskInfo;
+            target.TaskDueDate = source.TaskDueDate;
+            target.TaskIsComplete = false;
+        }
+
+        private void CopyCustomer(Task source, SimpleEditableTask target)
+        {
+            target.Id = source.Id;
+
+            if (EditMode)
+            {
+                target.TaskInfo = source.TaskInfo;
+                target.TaskDueDate = source.TaskDueDate;
+                target.TaskIsComplete = source.TaskIsComplete;
+            }
+        }
+
+        private void RaiseCanExecuteChanged(object sender, EventArgs e)
+        {
+            AddCommand.RaiseCanExecuteChanged();
+        }*/
+
+
+
+        /// <summary>
+        /// Handles the AddCommand, will need to be triggered once text is entered into the textbox
+        /// </summary>
+
+
+        /*public ICommand _addCommand { get; private set; }
+
+        public ICommand AddCommand
+        {
+            get
+            {
+                if(_addCommand == null)
+                {
+                    _addCommand = new RelayCommand(
+                        param => this.AddTask(),
+                        param => this.CanAddTask()
+                    );
+                }
+            }
+
+        }*/ //= new TaskICommand(AddTask, CanAddTask);
