@@ -18,6 +18,8 @@ namespace TaskManager.ViewModel
 
         private SimpleEditableTask _NewTask;
 
+
+
         public SimpleEditableTask NewTask
         {
 
@@ -29,14 +31,21 @@ namespace TaskManager.ViewModel
 
         }
 
+
         public AddEditTaskViewModel()
         {
             SetTask(null);
             AddCommand = new DelegateCommand(AddTask, CanAddTask);
+            EditCommand = new DelegateCommand(EditTask, CanEditTask);
         }
 
+        
+
         public DelegateCommand AddCommand { get; private set; }
+        public DelegateCommand EditCommand { get; private set; }
         private SimpleEditableTask _newViewTask = null;
+
+        private SimpleEditableTask _newEditableTask = null;
 
         private void AddTask()
         {
@@ -51,7 +60,10 @@ namespace TaskManager.ViewModel
             
             //MessageBox.Show("This action is getting reached!");
             Tasks.Add(_newViewTask);
-            
+            _newViewTask = null;
+            NewTask.TaskDueDate = null;
+            NewTask.TaskInfo = "";
+
 
         }
 
@@ -67,7 +79,7 @@ namespace TaskManager.ViewModel
             target.TaskIsComplete = false;
 
 
-            MessageBox.Show(target.TaskDueDate);
+            //MessageBox.Show(target.TaskDueDate);
         }
 
         
@@ -82,13 +94,60 @@ namespace TaskManager.ViewModel
         }
 
         
-
-
-        
-
         private void RaiseCanExecuteChanged(object sender, DataErrorsChangedEventArgs e)
         {
             AddCommand.RaiseCanExecuteChanged();
+        }
+
+        private SimpleEditableTask _selectedTask;
+        public SimpleEditableTask SelectedTask
+        {
+            get
+            {
+                return _selectedTask;
+            }
+            set
+            {
+                if(value == _selectedTask)
+                    return;
+
+                SetProperty(ref _selectedTask, value);
+
+                //MessageBox.Show("This action is getting reached!");
+
+                MessageBox.Show(_selectedTask.TaskInfo);
+                if(_selectedTask.TaskInfo == "")
+                {
+                    
+                    Tasks.Remove(value);
+                }
+
+
+            }
+        }
+
+
+
+        private void EditTask()
+        {
+            //SelectedTask = new SimpleEditableTask();
+
+            EditNewTask(_selectedTask, _newEditableTask);
+            
+
+        }
+        private bool CanEditTask()
+        {
+            return SelectedTask != null;
+        }
+
+
+        private void EditNewTask(SimpleEditableTask source, SimpleEditableTask target)
+        {
+            target.Id = source.Id;
+            target.TaskInfo = source.TaskInfo;
+            target.TaskDueDate = source.TaskDueDate;
+            target.TaskIsComplete = source.TaskIsComplete;
         }
     }
 }

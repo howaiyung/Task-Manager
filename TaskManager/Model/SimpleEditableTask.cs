@@ -35,6 +35,7 @@ namespace TaskManager.Model
         private string _taskInfo;
         //[Required(AllowEmptyStrings = false)]
         [Required]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         public string TaskInfo
         {
             get { return _taskInfo; }
