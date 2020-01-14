@@ -15,7 +15,12 @@ namespace TaskManager.ViewModel
 {
     class AddEditTaskViewModel : ValidatableBindableBase
     {
-        public ObservableCollection<SimpleEditableTask> Tasks { get; set; } = new ObservableCollection<SimpleEditableTask>();
+
+        public DelegateCommand AddCommand { get; private set; }
+        public DelegateCommand EditCommand { get; private set; }
+        //public ObservableCollection<SimpleEditableTask> Tasks { get; set; } = new ObservableCollection<SimpleEditableTask>();
+
+        public ObservableCollection<EditableTask> Tasks { get; set; } = new ObservableCollection<EditableTask>();
 
         private SimpleEditableTask _NewTask;
 
@@ -41,7 +46,7 @@ namespace TaskManager.ViewModel
 
         
 
-        public DelegateCommand AddCommand { get; private set; }
+        
         
         private SimpleEditableTask _newViewTask = null;
         private EditableTask _newSelectedTask = null;
@@ -60,7 +65,7 @@ namespace TaskManager.ViewModel
 
 
             //MessageBox.Show("This action is getting reached!");
-            Tasks.Add(_newViewTask);
+            Tasks.Add(_newSelectedTask);
             _newViewTask = null;
             NewTask.TaskDueDate = null;
             NewTask.TaskInfo = "";
@@ -103,7 +108,7 @@ namespace TaskManager.ViewModel
         //--------------------------------------------------------------------------------------------------------
 
 
-        public DelegateCommand EditCommand { get; private set; }
+        
 
         private EditableTask _selectedTask;
         
