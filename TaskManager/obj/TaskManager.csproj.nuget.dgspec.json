@@ -43,6 +43,10 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "Microsoft.OData.Edm": {
+              "target": "Package",
+              "version": "[7.6.2, )"
+            },
             "Prism.Core": {
               "target": "Package",
               "version": "[7.2.0.1422, )"

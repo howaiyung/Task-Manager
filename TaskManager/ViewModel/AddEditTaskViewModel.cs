@@ -10,6 +10,9 @@ using System.ComponentModel;
 using System.Windows;
 using Prism.Validation;
 using System.Windows.Media;
+using Microsoft.OData.Edm;
+using System.Globalization;
+using System.Windows.Controls;
 
 namespace TaskManager.ViewModel
 {
@@ -17,14 +20,13 @@ namespace TaskManager.ViewModel
     {
 
         public DelegateCommand AddCommand { get; private set; }
-        public DelegateCommand EditCommand { get; private set; }
-        //public ObservableCollection<SimpleEditableTask> Tasks { get; set; } = new ObservableCollection<SimpleEditableTask>();
+        public DelegateCommand<EditableTask> EditCommand { get; private set; }
 
         public ObservableCollection<EditableTask> Tasks { get; set; } = new ObservableCollection<EditableTask>();
 
-        private SimpleEditableTask _NewTask;
+        private EditableTask _NewTask;
 
-        public SimpleEditableTask NewTask
+        public EditableTask NewTask
         {
 
             get { return _NewTask; }
@@ -39,33 +41,23 @@ namespace TaskManager.ViewModel
         public AddEditTaskViewModel()
         {
             SetTask(null);
-            SetEditableTask(null);
             AddCommand = new DelegateCommand(AddTask, CanAddTask);
-            EditCommand = new DelegateCommand(EditTask, CanEditTask);
+            EditCommand = new DelegateCommand<EditableTask>(EditTask, CanEditTask);
         }
 
         
 
-        
-        
-        private SimpleEditableTask _newViewTask = null;
-        private EditableTask _newSelectedTask = null;
+        private EditableTask _newViewTask = null;
 
 
         private void AddTask()
         {
-            if(_newViewTask == null) { _newViewTask = new SimpleEditableTask(); }
-            if(_newSelectedTask == null) { _newSelectedTask = new EditableTask(); }
+            if(_newViewTask == null) { _newViewTask = new EditableTask(); }
 
             AddNewTask(NewTask, _newViewTask);
-            EditNewTask(NewTask, _newSelectedTask);
-            /*UpdateCustomer(NewTask, _editingTask);
-
-            Tasks.Add(NewTask);*/
-
 
             //MessageBox.Show("This action is getting reached!");
-            Tasks.Add(_newSelectedTask);
+            Tasks.Add(_newViewTask);
             _newViewTask = null;
             NewTask.TaskDueDate = null;
             NewTask.TaskInfo = "";
@@ -78,22 +70,21 @@ namespace TaskManager.ViewModel
             return !NewTask.HasErrors;
         }
 
-        private void AddNewTask(SimpleEditableTask source, SimpleEditableTask target)
+        private void AddNewTask(EditableTask source, EditableTask target)
         {
             target.TaskInfo = source.TaskInfo;
             target.TaskDueDate = source.TaskDueDate;
             target.TaskIsComplete = false;
-
-
+            //target.TaskStatus = CheckStatus(source);
             //MessageBox.Show(target.TaskDueDate);
         }
 
         
-        public void SetTask(SimpleEditableTask nTask)
+        public void SetTask(EditableTask nTask)
         {
             _newViewTask = nTask;
             if (NewTask != null) NewTask.ErrorsChanged -= RaiseCanExecuteChanged;
-            NewTask = new SimpleEditableTask();
+            NewTask = new EditableTask();
             NewTask.ErrorsChanged += RaiseCanExecuteChanged;
             //CopyTask(nTask, NewTask);
 
@@ -107,12 +98,26 @@ namespace TaskManager.ViewModel
 
         //--------------------------------------------------------------------------------------------------------
 
+        /*public string CheckStatus(EditableTask cNewTask)
+        {
+            var parameterDate = DateTime.ParseExact(cNewTask.TaskDueDate, "MM/dd/yyyy", CultureInfo.InvariantCulture);
 
+            if (cNewTask.TaskIsComplete == true)
+            {
+                return "TaskComplete";
+            }
+            else 
+            {
+                if (parameterDate < DateTime.Today)
+                    return "TaskOverDue";
+            }
+
+            return "TaskInProgress";
+        }*/
         
 
         private EditableTask _selectedTask;
         
-
         public EditableTask SelectedTask
         {
             get
@@ -123,46 +128,38 @@ namespace TaskManager.ViewModel
             {
                 SetProperty(ref _selectedTask, value);
 
+
+                MessageBox.Show(value.Id.ToString());
             }
         }
 
-        private void SetEditableTask(EditableTask nEditTask)
-        {
-            _newSelectedTask = nEditTask;
-            if (SelectedTask != null) SelectedTask.ErrorsChanged -= RaiseCanEditChanged;
-            SelectedTask = new EditableTask();
-            SelectedTask.ErrorsChanged += RaiseCanEditChanged;
 
+
+        public void SelectedEditableTask(object sender, SelectionChangedEventArgs e)
+        {
+            MessageBox.Show("This works!");
         }
 
-        private void RaiseCanEditChanged(object sender, DataErrorsChangedEventArgs e)
-        {
-            EditCommand.RaiseCanExecuteChanged();
+       
 
+        private void EditTask(EditableTask nEditTask)
+        {
+            MessageBox.Show(nEditTask.Id.ToString());
         }
 
-        private void EditTask()
+        private bool CanEditTask(object nEditTask)
         {
-            //EditNewTask(_selectedTask, _newEditableTask);
-            MessageBox.Show("This action is getting reached!");
-        }
-        private bool CanEditTask()
-        {
-            //return SelectedTask != null;
-            return !SelectedTask.HasErrors;
-        }
-
-
-        private void EditNewTask(SimpleEditableTask source, EditableTask target)
-        {
-            target.TaskInfo = source.TaskInfo;
-            target.TaskDueDate = source.TaskDueDate;
-            target.TaskIsComplete = source.TaskIsComplete;
-            target.TaskStatusColour = Brushes.Gray;
-
+            return true;
         }
     }
 }
 
 
 
+/*
+ * 
+ * In the end, I use string to handles the date because it allows to have nulls in the date parameter.
+ * The problem with date as a variable type is there are issues when selecting dates.
+ * I'll figure out the issues in another time, but there is a way to set the date time to a variable type.
+ * 
+ */

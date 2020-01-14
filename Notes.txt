@@ -114,3 +114,6 @@ public event EventHandler CanExecuteChanged;
 
 Figure out a way to make the data bindable in the template in such a way that it has its own unique data structure on when it changes.
 When the data changes, I can do a more comprehansive change in the list such that a specific item becomes green when check mark is done, and red when the due date has passed.
+
+
+SelectedItem="{Binding Path=SelectedTask, Mode=TwoWay}"

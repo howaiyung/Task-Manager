@@ -24,5 +24,7 @@ namespace TaskManager.View
             InitializeComponent();
             //this.DataContext = new AddEditTaskViewModel();
         }
+
+        
     }
 }

@@ -4,6 +4,7 @@ using System.Text;
 using Prism.Validation;
 using System.ComponentModel.DataAnnotations;
 using System.Windows.Media;
+using Microsoft.OData.Edm;
 
 namespace TaskManager.Model
 {
@@ -42,12 +43,38 @@ namespace TaskManager.Model
             set { SetProperty(ref _taskIsComplete, value); }
         }
 
-        private Brush _taskStatusColour;
+        /*private Brush _taskStatusColour;
 
         public Brush TaskStatusColour
         {
             get { return _taskStatusColour; }
             set { SetProperty(ref _taskStatusColour, value);  }
+        }*/
+
+
+        private string _taskStatus;
+
+        public string TaskStatus
+        {
+            get { return _taskStatus; }
+            set { SetProperty(ref _taskStatus, value); }
         }
     }
 }
+
+
+
+/*
+ * It seems the most optimial way of handling this is if the colour background for each of tasks to be handled by a status variable.
+ * 
+ * There is a an example:
+ * 
+ * https://stackoverflow.com/questions/50570409/how-to-bind-backgroundcolor-of-wpf-listview-items
+ * 
+ * Where the most optimial way to doing it is having a bunch of style triggers passively reading the status of the task at hand and change colour
+ * to the appropriate status.
+ * 
+ * Wouldn't it be easier in a way such that when you add an item into the task list, there is a case structure function that is called, a temp variable which is monitor everytime
+ * Something changes.
+ * 
+ */

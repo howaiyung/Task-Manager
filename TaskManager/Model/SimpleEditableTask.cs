@@ -9,6 +9,7 @@ using Prism.Events;
 using System.ComponentModel;
 using System.Collections;
 using Prism.Validation;
+using Microsoft.OData.Edm;
 
 /// <summary>
 /// This section is used in returning whether something has changed or not.
@@ -42,9 +43,9 @@ namespace TaskManager.Model
             set { SetProperty(ref _taskInfo, value); }
         }
 
-        public string _taskDueDate;
+        public Date _taskDueDate;
         [Required]
-        public string TaskDueDate
+        public Date TaskDueDate
         {
             get { return _taskDueDate; }
             set { SetProperty(ref _taskDueDate, value); }
@@ -59,6 +60,7 @@ namespace TaskManager.Model
             set { SetProperty(ref _taskIsComplete, value); }
         }
 
+        
         
     }
 }

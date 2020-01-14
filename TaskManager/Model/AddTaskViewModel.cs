@@ -24,8 +24,7 @@ namespace TaskManager.Model
         public string AddTaskDueDate
         {
             get { return _addTaskDueDate; }
-            set { 
-                SetProperty(ref _addTaskDueDate, value); }
+            set { SetProperty(ref _addTaskDueDate, value); }
         }
 
     }
