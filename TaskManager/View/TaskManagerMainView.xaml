@@ -27,9 +27,9 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="{Binding TaskInfo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskDescr"/>
-                <DatePicker Grid.Column="1" SelectedDate="{Binding TaskDueDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="DueDate" />
-                <CheckBox Grid.Column="2" IsChecked="{Binding TaskIsComplete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskComplete"/>
+                <TextBlock Grid.Column="0" Text="{Binding SelectedTask.TaskInfo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskDescr"/>
+                <DatePicker Grid.Column="1" SelectedDate="{Binding SelectedTask.TaskDueDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="DueDate" />
+                <CheckBox Grid.Column="2" IsChecked="{Binding SelectedTask.TaskIsComplete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskComplete"/>
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
@@ -88,7 +88,7 @@
                 Name="lbTasks" HorizontalContentAlignment="Stretch" 
                 Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5"
                 ItemsSource = "{Binding Tasks, Mode=TwoWay}"
-                SelectedItem = "{Binding SelectedTask}"
+                
                 
             
         />

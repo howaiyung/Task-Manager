@@ -445,3 +445,22 @@ public class Task
             }
 
         }*/ //= new TaskICommand(AddTask, CanAddTask);
+
+
+
+/*if(value == _selectedTask)
+                    return;
+
+                SetProperty(ref _selectedTask, value);*/
+
+                //MessageBox.Show("This action is getting reached!");
+
+                /*MessageBox.Show(_selectedTask.TaskInfo);
+                if(_selectedTask.TaskInfo == "")
+                {
+                    
+                    Tasks.Remove(value);
+                }*/
+
+
+<!-- SelectedItem = "{Binding SelectedTask}" -->

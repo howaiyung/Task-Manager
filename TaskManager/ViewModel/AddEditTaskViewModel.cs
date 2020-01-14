@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.ComponentModel;
 using System.Windows;
 using Prism.Validation;
+using System.Windows.Media;
 
 namespace TaskManager.ViewModel
 {
@@ -17,8 +18,6 @@ namespace TaskManager.ViewModel
         public ObservableCollection<SimpleEditableTask> Tasks { get; set; } = new ObservableCollection<SimpleEditableTask>();
 
         private SimpleEditableTask _NewTask;
-
-
 
         public SimpleEditableTask NewTask
         {
@@ -35,6 +34,7 @@ namespace TaskManager.ViewModel
         public AddEditTaskViewModel()
         {
             SetTask(null);
+            SetEditableTask(null);
             AddCommand = new DelegateCommand(AddTask, CanAddTask);
             EditCommand = new DelegateCommand(EditTask, CanEditTask);
         }
@@ -42,22 +42,23 @@ namespace TaskManager.ViewModel
         
 
         public DelegateCommand AddCommand { get; private set; }
-        public DelegateCommand EditCommand { get; private set; }
+        
         private SimpleEditableTask _newViewTask = null;
+        private EditableTask _newSelectedTask = null;
 
-        private SimpleEditableTask _newEditableTask = null;
 
         private void AddTask()
         {
             if(_newViewTask == null) { _newViewTask = new SimpleEditableTask(); }
-            
-            AddNewTask(NewTask, _newViewTask);
+            if(_newSelectedTask == null) { _newSelectedTask = new EditableTask(); }
 
+            AddNewTask(NewTask, _newViewTask);
+            EditNewTask(NewTask, _newSelectedTask);
             /*UpdateCustomer(NewTask, _editingTask);
 
             Tasks.Add(NewTask);*/
 
-            
+
             //MessageBox.Show("This action is getting reached!");
             Tasks.Add(_newViewTask);
             _newViewTask = null;
@@ -99,8 +100,15 @@ namespace TaskManager.ViewModel
             AddCommand.RaiseCanExecuteChanged();
         }
 
-        private SimpleEditableTask _selectedTask;
-        public SimpleEditableTask SelectedTask
+        //--------------------------------------------------------------------------------------------------------
+
+
+        public DelegateCommand EditCommand { get; private set; }
+
+        private EditableTask _selectedTask;
+        
+
+        public EditableTask SelectedTask
         {
             get
             {
@@ -108,46 +116,45 @@ namespace TaskManager.ViewModel
             }
             set
             {
-                if(value == _selectedTask)
-                    return;
-
                 SetProperty(ref _selectedTask, value);
-
-                //MessageBox.Show("This action is getting reached!");
-
-                MessageBox.Show(_selectedTask.TaskInfo);
-                if(_selectedTask.TaskInfo == "")
-                {
-                    
-                    Tasks.Remove(value);
-                }
-
 
             }
         }
 
+        private void SetEditableTask(EditableTask nEditTask)
+        {
+            _newSelectedTask = nEditTask;
+            if (SelectedTask != null) SelectedTask.ErrorsChanged -= RaiseCanEditChanged;
+            SelectedTask = new EditableTask();
+            SelectedTask.ErrorsChanged += RaiseCanEditChanged;
 
+        }
+
+        private void RaiseCanEditChanged(object sender, DataErrorsChangedEventArgs e)
+        {
+            EditCommand.RaiseCanExecuteChanged();
+
+        }
 
         private void EditTask()
         {
-            //SelectedTask = new SimpleEditableTask();
-
-            EditNewTask(_selectedTask, _newEditableTask);
-            
-
+            //EditNewTask(_selectedTask, _newEditableTask);
+            MessageBox.Show("This action is getting reached!");
         }
         private bool CanEditTask()
         {
-            return SelectedTask != null;
+            //return SelectedTask != null;
+            return !SelectedTask.HasErrors;
         }
 
 
-        private void EditNewTask(SimpleEditableTask source, SimpleEditableTask target)
+        private void EditNewTask(SimpleEditableTask source, EditableTask target)
         {
-            target.Id = source.Id;
             target.TaskInfo = source.TaskInfo;
             target.TaskDueDate = source.TaskDueDate;
             target.TaskIsComplete = source.TaskIsComplete;
+            target.TaskStatusColour = Brushes.Gray;
+
         }
     }
 }
