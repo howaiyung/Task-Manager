@@ -9,4 +9,20 @@ Currently found one solution
 
 https://stackoverflow.com/questions/17511437/mvc-not-validate-empty-string
 
+In order for triggers to occur inside the DataTemplate, it looks like you need to create the event.
 
+What I want to have is a ListboxItem where:
+
+1. When the leftbutton click event.
+2. Triggers a event where it calls a command in ViewModel.
+3. In the command, it calls a function that grabs the current selected ListBoxItem information, and compares the info at the same index in Tasks list.
+4. If the isChecked, it sends back to the trigger event as true. True is changing the background colour to green.
+5. If the new date selected is less than the current date, it sends back false. False is changing the background colour to red.
+
+
+The optimial way to this is whenever the data changes in the ListBoxItem.
+Rather than calling the function whenever the left button is clicked on an item, it'll execute when the data has changed.
+
+
+Another way of handling this check is calling the command to update the database entry.
+And having a ischecked event where it changes colour.

@@ -8,6 +8,14 @@ using Microsoft.OData.Edm;
 
 namespace TaskManager.Model
 {
+
+    public enum TaskCurrentStatus
+    {
+        TaskIsComplete,
+        TaskIsOverDue,
+        TaskIsInProgress
+    }
+
     public class EditableTask : ValidatableBindableBase
     {
         private Guid _id;
@@ -26,12 +34,22 @@ namespace TaskManager.Model
             set { SetProperty(ref _taskInfo, value); }
         }
 
-        public string _taskDueDate;
+        public DateTime _taskDueDate;
         [Required]
-        public string TaskDueDate
+        public DateTime TaskDueDate
         {
             get { return _taskDueDate; }
-            set { SetProperty(ref _taskDueDate, value); }
+            set { SetProperty(ref _taskDueDate, value);
+                  CheckStatus();
+                }
+        }
+
+        public bool _taskDueDateValid;
+        [Required]
+        public bool taskDueDateValid
+        {
+            get { return _taskDueDateValid; }
+            set { SetProperty(ref _taskDueDateValid, value);  }
         }
 
         private bool _taskIsComplete;
@@ -40,24 +58,35 @@ namespace TaskManager.Model
         public bool TaskIsComplete
         {
             get { return _taskIsComplete; }
-            set { SetProperty(ref _taskIsComplete, value); }
+            set { SetProperty(ref _taskIsComplete, value);
+                  CheckStatus();
+            }
         }
 
-        /*private Brush _taskStatusColour;
 
-        public Brush TaskStatusColour
+        
+
+
+        private TaskCurrentStatus _currStatTask;
+
+
+        public TaskCurrentStatus TaskStatus
         {
-            get { return _taskStatusColour; }
-            set { SetProperty(ref _taskStatusColour, value);  }
-        }*/
+            get { return _currStatTask; }
+            set { SetProperty(ref _currStatTask, value); }
+        }
 
 
-        private string _taskStatus;
-
-        public string TaskStatus
+        public void CheckStatus()
         {
-            get { return _taskStatus; }
-            set { SetProperty(ref _taskStatus, value); }
+            if ((DateTime.Compare(_taskDueDate.Date, DateTime.Today) >= 0) && (_taskIsComplete == false))
+                this.TaskStatus = TaskCurrentStatus.TaskIsInProgress;
+            else if (_taskIsComplete == true)
+                this.TaskStatus = TaskCurrentStatus.TaskIsComplete;
+            else
+                this.TaskStatus = TaskCurrentStatus.TaskIsOverDue;
+            
+
         }
     }
 }

@@ -25,3 +25,4 @@ C:\Users\Zipzash2\Desktop\C4i\TaskManager\obj\Debug\netcoreapp3.0\TaskManager.dl
 C:\Users\Zipzash2\Desktop\C4i\TaskManager\obj\Debug\netcoreapp3.0\GeneratedInternalTypeHelper.g.cs
 C:\Users\Zipzash2\Desktop\C4i\TaskManager\bin\Debug\netcoreapp3.0\Prism.Validation.dll
 C:\Users\Zipzash2\Desktop\C4i\TaskManager\bin\Debug\netcoreapp3.0\Microsoft.OData.Edm.dll
+C:\Users\Zipzash2\Desktop\C4i\TaskManager\bin\Debug\netcoreapp3.0\Microsoft.Xaml.Behaviors.dll

@@ -464,3 +464,80 @@ public class Task
 
 
 <!-- SelectedItem = "{Binding SelectedTask}" -->
+
+
+DataType = "{x:Type data:EditableTask}"
+
+
+<Style TargetType="{x:Type ListBoxItem}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=TaskDueDate}" Value="A">
+            </Style.Triggers>
+        </Style>
+
+
+
+<UserControl.Resources>
+        <DataTemplate DataType = "{x:Type data:EditableTask}">
+            <Grid>
+                <!--<Grid.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=lbTasks, Path=SelectedItem}" />
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=lbTasks, Path=SelectedItem}" />
+                </Grid.InputBindings>-->
+
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="{Binding Path=TaskInfo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskDescr"/>
+                <DatePicker Grid.Column="1" SelectedDate="{Binding Path=TaskDueDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="DueDate" />
+                <CheckBox Grid.Column="2" IsChecked="{Binding Path=TaskIsComplete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskComplete"/>
+
+                <!-- <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp"
+                </i:Interaction.Triggers> -->
+            </Grid>
+        </DataTemplate>
+
+        
+    </UserControl.Resources>
+
+
+
+<DataTemplate.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+
+
+                        
+
+
+                    </MultiDataTrigger.Conditions>
+                </MultiDataTrigger>
+            </DataTemplate.Triggers>
+
+
+
+<ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  TaskStatusBoolean, Mode=OneWay}" Value="True">
+                            <Setter Property="Background" Value="Red" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+
+
+
+<CheckBox.ContentTemplate>
+                        <DataTemplate>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=Tag}" Value="True">
+                                    
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </CheckBox.ContentTemplate>

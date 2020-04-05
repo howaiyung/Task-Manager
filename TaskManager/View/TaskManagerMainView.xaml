@@ -8,32 +8,58 @@
              xmlns:viewModel="clr-namespace:TaskManager.ViewModel"
              xmlns:data="clr-namespace:TaskManager.Model"
              xmlns:model="clr-namespace=Model;assembly=Model"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:interact="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
 
 
-    
+
     <UserControl.DataContext>
         <viewModel:AddEditTaskViewModel/>
     </UserControl.DataContext>
-
+    
     <UserControl.Resources>
-        <DataTemplate DataType = "{x:Type data:EditableTask}">
-            <Grid>
+
+        
+
+        <DataTemplate DataType = "{x:Type data:EditableTask}" >
+
+            <Grid x:Name="taskItem" Background="White">
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="{Binding TaskInfo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskDescr"/>
-                <DatePicker Grid.Column="1" SelectedDate="{Binding TaskDueDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="DueDate" />
-                <CheckBox Grid.Column="2" IsChecked="{Binding TaskIsComplete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskComplete"/>
+                <TextBlock Grid.Column="0" Text="{Binding Path=TaskInfo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskDescr"/>
+                <DatePicker Grid.Column="1" SelectedDate="{Binding Path=TaskDueDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="DueDate" />
+                <CheckBox Grid.Column="2" IsChecked="{Binding Path=TaskIsComplete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="TaskComplete" />
+
 
             </Grid>
+
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Path=TaskStatus, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="TaskIsOverdue">
+                    <Setter TargetName="taskItem" Property="Background"  Value="red"/>
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding Path=TaskStatus, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="TaskIsComplete">
+                    <Setter TargetName="taskItem" Property="Background"  Value="green"/>
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding Path=TaskStatus, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"  Value="TaskIsInProgress">
+                    <Setter TargetName="taskItem" Property="Background"  Value="white"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+            
+            
         </DataTemplate>
+
+        
+
     </UserControl.Resources>
 
     <Grid>
@@ -74,8 +100,10 @@
                     Grid.Column="1" 
                     Margin="5" 
                     Name="dueDate"
-                    Text="{Binding NewTask.TaskDueDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                    SelectedDate="{x:Static sys:DateTime.Now}"/>
+                    Focusable="False"
+                    DisplayDate="{x:Static sys:DateTime.Now}"
+                    SelectedDate="{Binding NewTask.TaskDueDate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                     />
 
         <Button Content="Add"
                 Command = "{Binding AddCommand}" 
@@ -86,18 +114,15 @@
 
 
 
-        <ListBox 
-                x:Name="lbTasks" HorizontalContentAlignment="Stretch" 
+        <ListBox
+                x:Name="ListBoxTasks" HorizontalContentAlignment="Stretch"
                 Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5"
                 ItemsSource = "{Binding Tasks, Mode=TwoWay}"
                 
         >
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=lbTasks, Path=SelectedItem}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+
         </ListBox>
+
 
     </Grid>
 </UserControl>
